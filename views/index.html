@@ -11,6 +11,10 @@
       
       <label for="seriesLength">Series Length:</label>
       <input name="seriesLength" id="seriesLength" />
+      <br />
+      <button value="3" class="series-length-button">Bo3</button>
+      <button value="5" class="series-length-button">Bo5</button>
+      <button value="7" class="series-length-button">Bo7</button>
 
       <br />
       <label for="blueTeam">Blue Team Name:</label>
@@ -23,10 +27,15 @@
       <br /><br />
       <label for="blueScore">Blue Score:</label>
       <input name="blueScore" id="blueScore" />
+      <button value="blueScore" class="score-to-zero-button">0</button>
+      <button value="blueScore" class="score-plus-one-button">+1</button>
       
       <br />
       <label for="goldScore">Gold Score:</label>
       <input name="goldScore" id="goldScore" />
+      <button value="goldScore" class="score-to-zero-button">0</button>
+      <button value="goldScore" class="score-plus-one-button">+1</button>
+
       <br />
       <button id="updateScore">Update Scoreboard</button>
 
@@ -83,7 +92,30 @@
           document.getElementById("goldScore").value = '';
         }
         
-        
+        var buttons = document.getElementsByClassName("series-length-button");
+        var seriesLengthField = document.getElementById("seriesLength");
+        for (var i = 0; i < buttons.length; ++i) {
+          buttons[i].addEventListener("click", function(event) {
+            seriesLengthField.value = event.target.value;
+          });
+        }
+
+        buttons = document.getElementsByClassName("score-to-zero-button");
+        for (var i = 0; i < buttons.length; ++i) {
+          buttons[i].addEventListener("click", function(event) {
+            var target = document.getElementById(event.target.value);
+            target.value = 0;
+          });
+        }
+
+        buttons = document.getElementsByClassName("score-plus-one-button");
+        for (var i = 0; i < buttons.length; ++i) {
+          buttons[i].addEventListener("click", function(event) {
+            var target = document.getElementById(event.target.value);
+            var curr = parseInt(target.value) || 0;
+            target.value = curr + 1;
+          });
+        }
 
       </script>
   </body>
